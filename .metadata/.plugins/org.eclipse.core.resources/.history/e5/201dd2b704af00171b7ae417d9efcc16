@@ -1,0 +1,26 @@
+package testing;
+
+
+import java.util.*;
+public class Main {
+	public static void main(String[] args) {
+	
+		Scanner input = new Scanner(System.in);
+		
+		System.out.print("Enter the year of your semester: ");
+		int year = input.nextInt();
+
+		System.out.print("Enter the term of your semester: ");
+		String term = input.nextLine();
+
+		System.out.print("Enter your class name: ");
+		String classes = input.nextLine();
+
+		System.out.print("Enter the description for your class: ");
+		String description = input.nextLine();
+
+		System.out.print("Enter the grade for your class: ");
+		String grade = input.nextLine();
+
+	}
+}

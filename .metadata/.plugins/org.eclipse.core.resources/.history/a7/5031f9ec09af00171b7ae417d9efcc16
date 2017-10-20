@@ -1,0 +1,68 @@
+package testing;
+
+import java.util.*;
+public class Var {
+	private static int year;
+	private static String term;
+	private static String classes;
+	private static String description;
+	private static int units;
+	private static String grade;
+	
+	
+	public Var ( /*int year, String term, String classes, String description, int units, String grade*/) {
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Enter the year of your semester:\n");
+		int year = input.nextInt();
+
+		System.out.println("Enter the term of your semester:\n");
+		term = input.nextLine();
+
+		System.out.println("Enter your class name:\n");
+		classes = input.nextLine();
+
+		System.out.println("Enter the description for your class:\n");
+		description = input.nextLine();
+
+		System.out.println("Enter the grade for your class:\n");
+		grade = input.nextLine();
+		
+		System.out.println("Enter the units for your class:\n");
+		int units = input.nextInt();
+		
+		/*
+		this.year = year;
+		this.term = term;
+		this.classes = classes;
+		this.description = description;
+		this.units = units;
+		this.grade = grade;
+		*/
+	} 
+	
+
+	public int year () {
+		return year;
+	}
+	
+	public String getTerm () {
+		return term;
+	}
+	
+	public String getClasses () {
+		return classes;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public int getUnits () {
+		return units;
+	}
+	
+	public String grade () {
+		return grade;
+	}
+}

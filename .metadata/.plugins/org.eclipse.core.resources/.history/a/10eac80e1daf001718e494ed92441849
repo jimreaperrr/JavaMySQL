@@ -1,0 +1,86 @@
+package nhan_nguyen_classes;
+
+import java.sql.*;
+import java.util.*;
+public class Main{
+
+	public static void main(String[] args) throws SQLException  {
+		
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		ResultSet myRs = null;
+		Var ask = new Var ();	
+		
+		
+		try {
+			//Get a connection
+			myConn= DriverManager.getConnection("jdbc:mysql://localhost:3306/classes", "jimmynhannguyen", "Nhan1414C");
+			int year = ask.getYear();
+
+			//Create a statement 
+			String sql = "insert into community_college " + 
+						"(year)" + " values (?)";
+			myStmt = myConn.prepareStatement(sql);
+			
+			//set parameters
+			myStmt.setInt(1, year);
+			
+			//Inserting a new class for term : Fall 2014
+			System.out.println("Inserting information... \n");
+			
+			//execute sql query
+			
+			myStmt.executeUpdate();
+			
+			
+			
+		/*	int rowsAffected = myStmt.executeUpdate(
+					"insert into community_college" 
+					+ "(year)" + "values(?)"
+					+ "(year");
+			
+			//verify this by getting a list of classes
+			myRs = myStmt.executeQuery("select * from community_college order by year");
+			
+			while (myRs.next()) {
+				System.out.println(myRs.getString("year")
+								   +"\t Term: " + myRs.getString("term") 
+								   + "\t Class:" + myRs.getString("class")   
+								   + "\t Description: " + myRs.getString("description") 
+								   + "\t Units: " + myRs.getString("units")
+								   + "\t Grade: " + myRs.getString("grade"));  }*/
+			
+			
+			
+			
+		}
+		catch (Exception exc) {
+			exc.printStackTrace();
+		}
+		finally {
+			close(myConn, myStmt, myRs);
+		}
+		
+
+	} 
+	
+	private static void close(Connection myConn, Statement myStmt, ResultSet myRs) throws SQLException {
+		if (myRs != null) {
+			myRs.close();
+		}
+		
+		if (myStmt != null) {
+			myStmt.close();
+		}
+		
+		if (myConn != null) {
+			myConn.close();
+		}
+		
+	}
+	
+	private static void close(Statement myStmt, ResultSet myRs) throws SQLException {
+		close (null, myStmt, myRs);
+	}
+
+}

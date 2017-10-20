@@ -1,0 +1,29 @@
+package nhan_nguyen_classes;
+
+import java.sql.*;
+import java.util.*;
+public class Main extends Var{
+	
+
+	public static void main(String[] args) throws SQLException  {
+			
+			Try_Connection ask = new Try_Connection ();
+			ask.newConnection();
+			
+			Insertion ask2 = new Insertion();
+			ask2.insert(getMyConn());
+			
+			Display_Results ask3 = new Display_Results();
+			ask3.displayRs(getMyConn(), myStmt);
+			
+			
+	}
+	
+	private static void menu() { 
+		System.out.print("Enter 1 for Insertion");
+		int value = Integer.parseInt(input.nextLine());
+		
+		
+		
+	}
+}

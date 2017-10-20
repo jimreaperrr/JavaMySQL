@@ -1,0 +1,70 @@
+package nhan_nguyen_classes;
+
+import java.util.*;
+import java.sql.*;
+
+public class Var{
+	
+	static Scanner input = new Scanner(System.in);
+	public static int year = getYear();
+	public static String term = getTerm();
+	public static String classes = getClasses();
+	public static String description = getDescription();
+	public static int units = getUnits();
+	public static String grade = getGrade();
+	
+	public static Connection myConn = null;
+	public static PreparedStatement myStmt = null;
+	public static ResultSet myRs = null;
+
+
+	
+	public Var () {
+	
+	} 
+	
+	public static int getYear () {
+		System.out.println("Enter the year of your semester: ");
+		int year = Integer.parseInt(input.nextLine()); 
+	
+		return year;
+	}
+	
+	public static String getTerm () {
+		System.out.println("Enter the term of your semester:\n");
+		String term = input.nextLine();
+		
+		return term;
+	}
+	
+	public static String getClasses () {
+
+		System.out.println("Enter your class name:\n");
+		String classes = input.nextLine();
+		return classes;
+	}
+	
+	public static String getDescription() {
+		System.out.println("Enter the description for your class:\n");
+		String description = input.nextLine();
+		
+		return description;
+	}
+	
+	public static int getUnits () {
+		System.out.println("Enter the units for your class:\n");
+		int units = Integer.parseInt(input.nextLine());
+		
+		return units;
+	}
+	
+	public static String getGrade () {
+		System.out.println("Enter the (capitalized) grade for your class:\n");
+		String grade = input.nextLine(); 
+		
+		return grade;
+	}
+	
+}
+
+

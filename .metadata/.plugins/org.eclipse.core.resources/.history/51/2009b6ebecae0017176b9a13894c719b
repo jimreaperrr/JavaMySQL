@@ -1,0 +1,69 @@
+package nhan_nguyen_classes;
+
+import java.sql.*;
+public class Main {
+
+	public static void main(String[] args) throws SQLException {
+		
+		Connection myConn = null;
+		Statement myStmt = null;
+		ResultSet myRs = null;
+		
+		
+		try {
+			//Get a connection
+			myConn= DriverManager.getConnection("jdbc:mysql://localhost:3306/community_college", "jimmynhannguyen", "Nhan1414C");
+			
+			//Create a statement 
+			myStmt = myConn.createStatement();
+			
+			//Inserting a new class for term : Fall 2014
+			System.out.println("Inserting classes for Fall 2014\n");
+			
+			int rowsAffected = myStmt.executeUpdate(
+					"insert into community_college" 
+					+ "(Term, class, description, units, grade)" 
+					+ "values "
+					+ "('Fall 2014', 'BIOL 10', 'INTRO TO BIOLOGY', '4.00', 'A')");
+			
+			//verify this by getting a list of classes
+			myRs = myStmt.executeQuery("select * from community_college order by term);
+			
+			while (myRs.next()) {
+				System.out.println(myRs.getString("term") 
+								   + "\t Class:" + myRs.getString("class")   
+								   + "\t Description: " + myRs.getString("description") 
+								   + "\t Units: " + myRs.getString("units")
+								   + "\t Grade: " + myRs.getString("grade"));
+			}
+		}
+		catch (Exception exc) {
+			exc.printStackTrace();
+		}
+		finally {
+			close(myConn, myStmt, myRs);
+		}
+		
+
+	}
+	
+	private static void close(Connection myConn, Statement myStmt, ResultSet myRs) throws SQLException {
+		if (myRs != null) {
+			myRs.close();
+		}
+		
+		if (myStmt != null) {
+			myStmt.close();
+		}
+		
+		if (myConn != null) {
+			myConn.close();
+		}
+		
+	}
+	
+	private static void close(Statement myStmt, ResultSet myRs) throws SQLException {
+		close (null, myStmt, myRs);
+	}
+
+}

@@ -1,0 +1,50 @@
+package nhan_nguyen_classes;
+
+import java.sql.*;
+import java.util.*;
+public class Main{
+	public Connection myConn = null;
+	public PreparedStatement myStmt = null;
+	public ResultSet myRs = null;
+
+	public static void main(String[] args) throws SQLException  {
+		
+		
+		Insertion ask1 = new Insertion ();
+		Try_Connection ask2 = new Try_Connection();
+		
+		
+			Scanner input = new Scanner(System.in);
+			ask2.newConnection();
+			ask1.insert(ask2.myConn, ask2.myStmt, ask2.myRs);
+			
+			
+
+			/*
+			 * int rowsAffected = myStmt.executeUpdate( "insert into community_college" +
+			 * "('term', 'class', 'description', 'grade')" + "values " +
+			 * "(term, class, description, grade)");
+			 * 
+			 */
+			//verify this by getting a list of classes
+			//myRs = myStmt.executeQuery("select * from community_college order by year");
+			
+			/*while (myRs.next()) {
+				System.out.println(myRs.getString("year")
+								   +"\t Term: " + myRs.getString("term") 
+								   + "\t Class:" + myRs.getString("class")   
+								   + "\t Description: " + myRs.getString("description") 
+								   + "\t Units: " + myRs.getString("units")
+								   + "\t Grade: " + myRs.getString("grade"));  } */
+			
+			
+			
+			
+		
+		
+
+	} 
+	
+
+
+}

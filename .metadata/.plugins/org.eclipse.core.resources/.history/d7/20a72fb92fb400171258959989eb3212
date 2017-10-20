@@ -1,0 +1,98 @@
+package nhan_nguyen_classes;
+
+import java.util.*;
+
+import static nhan_nguyen_classes.Var.myConn;
+
+import java.sql.*;
+
+public class Var{
+	
+	static Scanner input = new Scanner(System.in);
+	
+	
+	private static int year;
+	private static String term;
+	private static String classes;
+	private static String description;
+	private static int units;
+	private static String grade;
+	
+	private static Connection myConn = null;
+	private  static PreparedStatement myStmt = null;
+	private static ResultSet myRs = null;
+
+
+	
+	public Var () {
+		
+	
+	} 
+	
+	public static int getYear () {
+		System.out.println("Enter the year of your semester: ");
+		int year = Integer.parseInt(input.nextLine()); 
+	
+		return year;
+	}
+	
+	public static String getTerm () {
+		System.out.println("Enter the term of your semester:\n");
+		String term = input.nextLine();
+		
+		return term;
+	}
+	
+	public static String getClasses () {
+
+		System.out.println("Enter your class name:\n");
+		String classes = input.nextLine();
+		return classes;
+	}
+	
+	public static String getDescription() {
+		System.out.println("Enter the description for your class:\n");
+		String description = input.nextLine();
+		
+		return description;
+	}
+	
+	public static int getUnits () {
+		System.out.println("Enter the units for your class:\n");
+		int units = Integer.parseInt(input.nextLine());
+		
+		return units;
+	}
+	
+	public static String getGrade () {
+		System.out.println("Enter the (capitalized) grade for your class:\n");
+		String grade = input.nextLine(); 
+		
+		return grade;
+	}
+	
+	public static Connection myConn () throws SQLException {
+		System.out.println("Enter the database url: ");
+		String url = input.nextLine();
+		System.out.println("Enter the username: ");
+		String user = input.nextLine();
+		System.out.println("Enter the password: ");
+		String pw = input.nextLine();
+		
+		 setMyConn(DriverManager.getConnection(url,user,pw));
+			
+		
+		return getMyConn();
+	}
+
+	public static Connection getMyConn() {
+		return myConn;
+	}
+
+	public static void setMyConn(Connection myConn) {
+		Var.myConn = myConn;
+	}
+	
+}
+
+

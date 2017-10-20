@@ -1,0 +1,44 @@
+package nhan_nguyen_classes;
+
+import java.util.*;
+import java.sql.*;
+public class Display_Results extends Var {
+	
+	public static void displayRs (Connection myConn, PreparedStatement myStmt) throws SQLException {
+		
+		try {
+		myRs = myStmt.executeQuery("select * from community_college order by year");
+		
+		while (myRs.next()) {
+			System.out.println(myRs.getString("year")
+							   +"\t Term: " + myRs.getString("term") 
+							   + "\t Class:" + myRs.getString("class")   
+							   + "\t Description: " + myRs.getString("description") 
+							   + "\t Units: " + myRs.getString("units")
+							   + "\t Grade: " + myRs.getString("grade"));  
+			} 
+		}
+		catch (Exception exc) {
+			exc.printStackTrace();
+		}
+		finally {
+			close(myConn, myRs);
+		}
+		
+		
+	}
+	private static void close(Connection myConn, ResultSet myRs) throws SQLException {
+		
+		if (myRs != null) {
+			myStmt.close();
+		}
+		
+		if (myConn != null) {
+			myConn.close();
+		}
+		
+		
+	
+
+}
+}

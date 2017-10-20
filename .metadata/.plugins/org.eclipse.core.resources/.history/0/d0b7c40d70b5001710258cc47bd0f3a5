@@ -1,0 +1,93 @@
+package nhan_nguyen_classes;
+import java.util.*;
+import java.sql.*;
+
+//Connection Variables only 
+public class Cvar extends Var {
+	
+	static Scanner input = new Scanner(System.in);
+	
+	private static Connection myConn = null;
+	private  static PreparedStatement myStmt = null;
+	private static ResultSet myRs = null;
+	
+	public Cvar () {
+		
+	}
+	
+	
+	public static Connection myConnInput () throws SQLException {
+		System.out.println("Enter the database url: ");
+		String url2 = input.nextLine();
+		
+		String user2 = null;
+		String pw2 = null;
+		
+		while (true) {
+		if (url2 != Var.getUrl()) {
+			System.out.println("Typo in Url or database does not exist.");
+			System.out.println("Enter the database url: ");
+			url2 = input.nextLine();
+			continue;
+		}
+		else {
+			
+			System.out.println("Enter the username: ");
+			user2 = input.nextLine();
+			
+			System.out.println("Enter the password: ");
+			pw2 = input.nextLine();
+			break;
+		}}
+		
+		while (true) {
+		if (url2 == Var.getUrl() && (user2 != Var.getUser() ||
+				pw2 != Var.getPw())) {
+			System.out.println("Username not found or incorrect password.");
+			System.out.println("Enter the username: ");
+			user2 = input.nextLine();
+	
+			
+			System.out.println("Enter the password: ");
+			 pw2 = input.nextLine();
+		
+		}
+		
+		else {
+		setMyConn(DriverManager.getConnection(getUrl(),getUser(),getPw()));
+		System.out.println("Connection Successful");
+		break;
+		}
+		
+		}
+		
+		return getMyConn();
+}
+	
+
+	public static Connection getMyConn() {
+		return myConn;
+	}
+
+	public static void setMyConn(Connection myConn) {
+		Cvar.myConn = myConn;
+	}
+
+	public static PreparedStatement getMyStmt() {
+		return myStmt;
+	}
+
+	public static void setMyStmt(PreparedStatement myStmt) {
+		Cvar.myStmt = myStmt;
+	}
+
+	public static ResultSet getMyRs() {
+		return myRs;
+	}
+
+	public static void setMyRs(ResultSet myRs) {
+		Cvar.myRs = myRs;
+	}
+	
+
+}

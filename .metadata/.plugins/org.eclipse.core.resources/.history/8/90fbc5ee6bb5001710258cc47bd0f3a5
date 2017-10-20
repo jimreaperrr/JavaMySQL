@@ -1,0 +1,70 @@
+package nhan_nguyen_classes;
+import java.util.*;
+import java.sql.*;
+
+//Connection Variables only 
+public class Cvar extends Var {
+	
+	static Scanner input = new Scanner(System.in);
+	
+	private static Connection myConn = null;
+	private  static PreparedStatement myStmt = null;
+	private static ResultSet myRs = null;
+	
+	public Cvar () {
+		
+	}
+	
+	
+	public static Connection myConnInput () throws SQLException {
+		System.out.println("Enter the database url: ");
+		String url = input.nextLine();
+		setUrl(url);
+		System.out.println("Enter the username: ");
+		String user = input.nextLine();
+		setUser(user);
+		System.out.println("Enter the password: ");
+		String pw = input.nextLine();
+		setPw(pw);
+		
+		setMyConn(DriverManager.getConnection(getUrl(),getUser(),getPw()));
+			
+		if (Cvar.getUrl() != Var.getUrl()) {
+			System.out.println("Typo in Url or database does not exist.");
+		}
+		
+		else if (Cvar.getUrl() == Var.getUrl() && (Cvar.getUser() != Var.getUser() ||
+				Cvar.getPw() != Var.getPw())) {
+			System.out.println("Username not found or incorrect password.");
+		}
+		
+		return getMyConn();
+		
+	}
+
+	public static Connection getMyConn() {
+		return myConn;
+	}
+
+	public static void setMyConn(Connection myConn) {
+		Cvar.myConn = myConn;
+	}
+
+	public static PreparedStatement getMyStmt() {
+		return myStmt;
+	}
+
+	public static void setMyStmt(PreparedStatement myStmt) {
+		Cvar.myStmt = myStmt;
+	}
+
+	public static ResultSet getMyRs() {
+		return myRs;
+	}
+
+	public static void setMyRs(ResultSet myRs) {
+		Cvar.myRs = myRs;
+	}
+	
+
+}

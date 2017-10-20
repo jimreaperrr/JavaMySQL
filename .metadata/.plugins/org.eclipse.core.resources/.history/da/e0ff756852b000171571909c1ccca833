@@ -1,0 +1,56 @@
+package nhan_nguyen_classes;
+
+import java.util.Scanner;
+
+public class Var extends Main {
+	
+	Scanner input = new Scanner(System.in);
+	
+	public Var () {
+		
+	} 
+	
+	public int getYear () {
+		System.out.println("Enter the year of your semester: ");
+		int year = Integer.parseInt(input.nextLine()); 
+	
+		return year;
+	}
+	
+	public String getTerm () {
+		System.out.println("Enter the term of your semester:\n");
+		String term = input.nextLine();
+		
+		return term;
+	}
+	
+	public String getClasses () {
+
+		System.out.println("Enter your class name:\n");
+		String classes = input.nextLine();
+		return classes;
+	}
+	
+	public String getDescription() {
+		System.out.println("Enter the description for your class:\n");
+		String description = input.nextLine();
+		
+		return description;
+	}
+	
+	public int getUnits () {
+		System.out.println("Enter the units for your class:\n");
+		int units = input.nextInt();
+		
+		return units;
+	}
+	
+	public String getGrade () {
+		System.out.println("Enter the (capitalized) grade for your class:\n");
+		String grade = input.nextLine(); 
+		
+		return grade;
+	}
+}
+
+

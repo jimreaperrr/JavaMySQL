@@ -1,0 +1,105 @@
+package nhan_nguyen_classes;
+
+import java.sql.*;
+import java.util.*;
+public class Main{
+
+	public static void main(String[] args) throws SQLException  {
+		
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		ResultSet myRs = null;
+		Var ask = new Var ();	
+
+		
+		
+		try {
+			Scanner input = new Scanner(System.in);
+			//Get a connection
+			myConn= DriverManager.getConnection("jdbc:mysql://localhost:3306/classes", "jimmynhannguyen", "Nhan1414C");
+			
+		
+			int year= ask.getYear();
+			input.skip("[\r\n]+");
+			String term = ask.getTerm();
+			String classes = ask.getClasses();
+			String description = ask.getDescription();
+			int units = ask.getUnits();
+			input.nextLine();
+			String grade = ask.getGrade();
+
+			//Create a statement 
+			String sql = "insert into community_college " 
+						+ "(year, term, class, description, units, grade)"
+						+ " values (?,?,?,?,?,?)"; 
+			myStmt = myConn.prepareStatement(sql);
+			
+			//set parameters
+			myStmt.setInt(1, year);
+			myStmt.setString(2, term);
+			myStmt.setString(3, classes);
+			myStmt.setString(4, description);
+			myStmt.setInt(5, units);
+			myStmt.setString(6, grade);
+			
+			
+			//Inserting a new class for term : Fall 2014
+			System.out.println("Inserting information... \n");
+			
+			//execute sql query
+			
+			myStmt.executeUpdate();
+			
+			System.out.println("Insert complete.");
+			
+			/*int rowsAffected = myStmt.executeUpdate(
+					"insert into community_college" 
+					+ "('term', 'class', 'description', 'grade')"
+							+ "values " + "(term, class, description, grade)");
+				
+			
+			//verify this by getting a list of classes
+			myRs = myStmt.executeQuery("select * from community_college order by year");
+			
+			while (myRs.next()) {
+				System.out.println(myRs.getString("year")
+								   +"\t Term: " + myRs.getString("term") 
+								   + "\t Class:" + myRs.getString("class")   
+								   + "\t Description: " + myRs.getString("description") 
+								   + "\t Units: " + myRs.getString("units")
+								   + "\t Grade: " + myRs.getString("grade"));  }
+			
+			*/
+			
+			
+		}
+		catch (Exception exc) {
+			exc.printStackTrace();
+		}
+		finally {
+			close(myConn, myStmt, myRs);
+		}
+		
+
+	} 
+	
+	private static void close(Connection myConn, Statement myStmt, ResultSet myRs) throws SQLException {
+		if (myRs != null) {
+			myRs.close();
+		}
+		
+		if (myStmt != null) {
+			myStmt.close();
+		}
+		
+		if (myConn != null) {
+			myConn.close();
+		}
+		
+	}
+	
+	private static void close(Statement myStmt, ResultSet myRs) throws SQLException {
+		close (null, myStmt, myRs);
+	}
+
+}
